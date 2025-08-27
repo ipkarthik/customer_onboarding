@@ -15,6 +15,7 @@ Open [http://localhost:3000/signin](http://localhost:3000/signin) to login.
 * stepper persists data across reloads using localStorage
 * save as draft at all stepper steps
 * click on table row to edit, delete customer
+* stepper to both create new / edit existing drafts / onboarding
 * responsive table to list customers
 * separate route to view customer details
 * strong validation for all form fields in each step of stepper
