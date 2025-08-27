@@ -12,7 +12,7 @@ type Customer = {
     status?: string;
 };
 
-const filePath = path.join(process.cwd(), "db.json");
+const filePath = path.join(process.cwd(), "/tmp/db.json");
 
 // helper to read JSON
 function readData() {
