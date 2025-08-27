@@ -1,0 +1,38 @@
+[
+  {
+    "email": "jane@example.com",
+    "firstName": "Jane",
+    "lastName": "Doe",
+    "phone": "1234567890",
+    "dob": "1990-01-10",
+    "id": "ID-ABC1234",
+    "status": "onboarded"
+  },
+  {
+    "email": "john@example.com",
+    "firstName": "John",
+    "lastName": "Doe",
+    "phone": "1234567990",
+    "dob": "1990-01-10",
+    "id": "ID-ABC1235",
+    "status": "onboarded"
+  },
+  {
+    "id": "1756276631298",
+    "email": "robust.single@gmail.com",
+    "firstName": "robust",
+    "lastName": "single",
+    "phone": "5555555555",
+    "dob": "2000-06-06",
+    "status": "onboarded"
+  },
+  {
+    "email": "jade@example.com",
+    "firstName": "Jan",
+    "lastName": "Doe",
+    "phone": "1234567890",
+    "dob": "1989-02-04",
+    "id": "frfsfsedssdsdf",
+    "status": "onboarded"
+  }
+]
