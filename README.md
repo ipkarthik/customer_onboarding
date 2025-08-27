@@ -1,6 +1,4 @@
-Customer Onboarding
-
-## Getting Started
+## Customer Onboarding
 
 npm version 11.5.2
 
