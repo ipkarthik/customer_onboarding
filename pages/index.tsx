@@ -12,6 +12,7 @@ import {
   StepLabel,
   Button,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import { z } from "zod";
 import { useRouter } from "next/router";
@@ -73,6 +74,9 @@ export default function Home() {
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const router = useRouter();
+
+  const isMobile = useMediaQuery("(max-width:600px)");
+
 
   useEffect(() => {
     setSignInEmail(localStorage.getItem("userEmail") || "User");
@@ -378,60 +382,74 @@ export default function Home() {
                 <CircularProgress />
               </Box>
             ) : (
-              <Paper>
-                <TableContainer>
-                  <Table>
-                    <TableHead>
-                      <TableRow>
-                        <TableCell>Email</TableCell>
-                        <TableCell>First Name</TableCell>
-                        <TableCell>Last Name</TableCell>
-                        <TableCell>Phone</TableCell>
-                        <TableCell>Date of Birth</TableCell>
-                        <TableCell>Status</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {filteredRows
-                        ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                        .map((row) => (
-                          <TableRow key={row.id} hover
-                            sx={{ cursor: "pointer" }}
-                            onClick={() => handleRowClick(row.id)}>
-                            <TableCell>{row.email}</TableCell>
-                            <TableCell>{row.firstName}</TableCell>
-                            <TableCell>{row.lastName}</TableCell>
-                            <TableCell>{row.phone}</TableCell>
-                            <TableCell>{row.dob}</TableCell>
-                            <TableCell>{row.status}</TableCell>
-                          </TableRow>
-                        ))}
-                      {filteredRows?.length === 0 && (
+              isMobile ? (
+                <div>
+                  {rows.map((row, i) => (
+                    <Paper key={i} sx={{ p: 2, mb: 2 }}>
+                      <div><b>Email:</b> {row.email}</div>
+                      <div><b>First Name:</b> {row.firstName}</div>
+                      <div><b>Last Name:</b> {row.lastName}</div>
+                      <div><b>Phone:</b> {row.phone}</div>
+                      <div><b>Date of Birth:</b> {row.dob}</div>
+                      <div><b>Status:</b> {row.status}</div>
+                    </Paper>
+                  ))}
+                </div>
+              ) : (
+                <Paper>
+                  <TableContainer>
+                    <Table>
+                      <TableHead>
                         <TableRow>
-                          <TableCell colSpan={4} align="center">
-                            No results found
-                          </TableCell>
+                          <TableCell>Email</TableCell>
+                          <TableCell>First Name</TableCell>
+                          <TableCell>Last Name</TableCell>
+                          <TableCell>Phone</TableCell>
+                          <TableCell>Date of Birth</TableCell>
+                          <TableCell>Status</TableCell>
                         </TableRow>
-                      )}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
+                      </TableHead>
+                      <TableBody>
+                        {filteredRows
+                          ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                          .map((row) => (
+                            <TableRow key={row.id} hover
+                              sx={{ cursor: "pointer" }}
+                              onClick={() => handleRowClick(row.id)}>
+                              <TableCell>{row.email}</TableCell>
+                              <TableCell>{row.firstName}</TableCell>
+                              <TableCell>{row.lastName}</TableCell>
+                              <TableCell>{row.phone}</TableCell>
+                              <TableCell>{row.dob}</TableCell>
+                              <TableCell>{row.status}</TableCell>
+                            </TableRow>
+                          ))}
+                        {filteredRows?.length === 0 && (
+                          <TableRow>
+                            <TableCell colSpan={6} align="center">
+                              No results found
+                            </TableCell>
+                          </TableRow>
+                        )}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
 
-                {/* 📄 Pagination */}
-                <TablePagination
-                  rowsPerPageOptions={[5, 10, 25]}
-                  component="div"
-                  count={filteredRows?.length}
-                  rowsPerPage={rowsPerPage}
-                  page={page}
-                  onPageChange={handleChangePage}
-                  onRowsPerPageChange={handleChangeRowsPerPage}
-                />
-              </Paper>
+                  <TablePagination
+                    rowsPerPageOptions={[5, 10, 25]}
+                    component="div"
+                    count={filteredRows?.length}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    onPageChange={handleChangePage}
+                    onRowsPerPageChange={handleChangeRowsPerPage}
+                  />
+                </Paper>
+              )
             )}
-          </Box>
-        </main>
-      </div>
+        </Box>
+      </main>
+    </div >
     </>
   );
 }
