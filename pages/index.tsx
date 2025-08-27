@@ -63,7 +63,7 @@ const geistMono = Geist_Mono({
 
 export default function Home() {
 
-  const [rows, setRows] = useState<any[]>([]);
+  const [rows, setRows] = useState<FormData[]>([]);
   const [searchText, setSearchText] = useState("");
   const [loading, setLoading] = useState(true);
 
@@ -89,7 +89,6 @@ export default function Home() {
       try {
         const res = await fetch("/api/items");
         const data = await res.json();
-        console.log(data);
         setRows(data);
       } catch (err) {
         console.error("Failed to fetch items", err);
@@ -246,7 +245,7 @@ export default function Home() {
 
   const handleReviewSubmit = async () => {
     try {
-      let updatedFormData = { ...formData, status: "onboarded" }
+      const updatedFormData = { ...formData, status: "onboarded" }
       const response = await fetch("/api/items", {
         method: "PUT",
         headers: {
@@ -288,7 +287,7 @@ export default function Home() {
 
   const handleSaveDraft = async () => {
     try {
-      let updatedFormData = { ...formData, status: "draft" }
+      const updatedFormData = { ...formData, status: "draft" }
       const response = await fetch("/api/items", {
         method: "PUT",
         headers: {
@@ -312,7 +311,7 @@ export default function Home() {
     alert("Draft saved!");
   };
 
-  const handleRowClick = (id: number) => {
+  const handleRowClick = (id: string) => {
     router.push(`/customers/${id}`); // navigate to a detail page
   }
 
