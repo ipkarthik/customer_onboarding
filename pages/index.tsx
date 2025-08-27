@@ -386,12 +386,12 @@ export default function Home() {
                 <div>
                   {rows.map((row, i) => (
                     <Paper key={i} sx={{ p: 2, mb: 2 }}>
-                      <div><b>Email:</b> {row.email}</div>
-                      <div><b>First Name:</b> {row.firstName}</div>
-                      <div><b>Last Name:</b> {row.lastName}</div>
-                      <div><b>Phone:</b> {row.phone}</div>
-                      <div><b>Date of Birth:</b> {row.dob}</div>
-                      <div><b>Status:</b> {row.status}</div>
+                      <div onClick={() => handleRowClick(row.id)}><b>Email:</b> {row.email}</div>
+                      <div onClick={() => handleRowClick(row.id)}><b>First Name:</b> {row.firstName}</div>
+                      <div onClick={() => handleRowClick(row.id)}><b>Last Name:</b> {row.lastName}</div>
+                      <div onClick={() => handleRowClick(row.id)}><b>Phone:</b> {row.phone}</div>
+                      <div onClick={() => handleRowClick(row.id)}><b>Date of Birth:</b> {row.dob}</div>
+                      <div onClick={() => handleRowClick(row.id)}><b>Status:</b> {row.status}</div>
                     </Paper>
                   ))}
                 </div>
